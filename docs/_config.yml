@@ -31,7 +31,7 @@ url: "https://nick.miethe.dev" # the base hostname & protocol for your site, e.g
 remote_theme: "dracula/gh-pages"
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme 
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
