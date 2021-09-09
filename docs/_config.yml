@@ -28,10 +28,9 @@ baseurl: "docs" # the subpath of your site, e.g. /blog
 url: "https://nick.miethe.dev" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
-remote_theme: "dracula/gh-pages"
+remote_theme: dracula/gh-pages
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
   - jekyll-seo-tag
 
 # Exclude from processing.
