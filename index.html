@@ -1,0 +1,784 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Miethe - OpenShift SME & Serial Distracted Hobbyist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #282a36;
+            --current-line: #44475a;
+            --foreground: #f8f8f2;
+            --comment: #6272a4;
+            --cyan: #8be9fd;
+            --green: #50fa7b;
+            --orange: #ffb86c;
+            --pink: #ff79c6;
+            --purple: #bd93f9;
+            --red: #ff5555;
+            --yellow: #f1fa8c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--foreground);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--purple), var(--pink), var(--cyan));
+            opacity: 0.05;
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--purple), var(--pink), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--green);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .typing-text {
+            font-size: 1.2rem;
+            color: var(--comment);
+            height: 30px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2rem;
+            background-color: var(--green);
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: 2px solid;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--purple);
+            border-color: var(--purple);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--purple);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(189, 147, 249, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cyan);
+            color: var(--bg);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 233, 253, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--purple);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--pink));
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background: var(--current-line);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .about-card:hover {
+            border-color: var(--pink);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 121, 198, 0.2);
+        }
+
+        .about-card h3 {
+            color: var(--pink);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .about-card p {
+            color: var(--foreground);
+            line-height: 1.8;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--current-line);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple);
+            box-shadow: 0 20px 40px rgba(189, 147, 249, 0.3);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-content {
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-title {
+            color: var(--cyan);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--foreground);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--bg);
+            color: var(--green);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--green);
+        }
+
+        .project-link {
+            color: var(--purple);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--pink);
+            transform: translateX(5px);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--current-line);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            border-color: var(--green);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(80, 250, 123, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            color: var(--foreground);
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--current-line);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-decoration: none;
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139, 233, 253, 0.2);
+        }
+
+        .contact-card.github:hover {
+            border-color: var(--purple);
+        }
+
+        .contact-card.linkedin:hover {
+            border-color: var(--cyan);
+        }
+
+        .contact-card.email:hover {
+            border-color: var(--pink);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--comment);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--current-line);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 2px solid var(--purple);
+        }
+
+        footer p {
+            color: var(--comment);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--comment);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Particle background effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--purple);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px);
+            }
+            50% {
+                transform: translateY(-200px) translateX(-50px);
+            }
+            75% {
+                transform: translateY(-100px) translateX(100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nick Miethe</h1>
+            <div class="subtitle">OpenShift SME & Serial Distracted Hobbyist</div>
+            <div class="typing-text" id="typing-text">
+                <span id="typed-text"></span><span class="cursor"></span>
+            </div>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Professional</h3>
+                    <p>OpenShift Subject Matter Expert with deep expertise in container orchestration, enterprise Kubernetes, and cloud-native architectures. I help organizations modernize their infrastructure and embrace DevOps practices.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Creator</h3>
+                    <p>I run multiple blogs including MeatyBytes.io for tech and career insights, DistractedHobbyists.com for hobby projects, and OpenShift.blog for OpenShift knowledge sharing.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Hobbyist</h3>
+                    <p>Self-proclaimed Serial Distracted Hobbyist! From building projects to exploring new technologies, I love diving into various interests and sharing what I learn along the way.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Human</h3>
+                    <p>Father, Husband, and Son. When I'm not working with containers or writing blog posts, I'm spending time with family and pursuing my many hobbies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects & Sites</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">MeatyBytes.io</h3>
+                        <p class="project-description">
+                            My core blog covering OpenShift, tech careers, and various hobbies. Fresh content on enterprise technology, professional development, and personal projects.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Hugo</span>
+                            <span class="tech-tag">Blowfish Theme</span>
+                            <span class="tech-tag">Blogging</span>
+                        </div>
+                        <a href="https://meatybytes.io" target="_blank" class="project-link">
+                            Visit Site →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">OpenShift.blog</h3>
+                        <p class="project-description">
+                            Comprehensive wiki and knowledge base for all things OpenShift. Deep dives into OCP features, best practices, and real-world implementations.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Hugo</span>
+                            <span class="tech-tag">Docsy</span>
+                            <span class="tech-tag">OpenShift</span>
+                            <span class="tech-tag">Kubernetes</span>
+                        </div>
+                        <a href="https://openshift.blog/" target="_blank" class="project-link">
+                            Explore Wiki →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">DistractedHobbyists.com</h3>
+                        <p class="project-description">
+                            My original hobbyist blog, now evolved into a comprehensive wiki documenting various hobby projects, from electronics to 3D printing and beyond.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Hugo</span>
+                            <span class="tech-tag">Docsy</span>
+                            <span class="tech-tag">DIY</span>
+                            <span class="tech-tag">Hobbies</span>
+                        </div>
+                        <a href="https://DistractedHobbyists.com" target="_blank" class="project-link">
+                            Check It Out →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technologies & Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon">🚢</div>
+                    <div class="skill-name">OpenShift</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">☸️</div>
+                    <div class="skill-name">Kubernetes</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🐳</div>
+                    <div class="skill-name">Docker</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">☁️</div>
+                    <div class="skill-name">Cloud Native</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🔧</div>
+                    <div class="skill-name">DevOps</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">📝</div>
+                    <div class="skill-name">Hugo</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🎨</div>
+                    <div class="skill-name">Web Design</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🛠️</div>
+                    <div class="skill-name">DIY Projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-grid">
+                <a href="https://github.com/miethe" target="_blank" class="contact-card github">
+                    <div class="contact-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <p>@miethe</p>
+                </a>
+                <a href="https://www.linkedin.com/in/miethe/" target="_blank" class="contact-card linkedin">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <p>Connect with me</p>
+                </a>
+                <a href="mailto:miethe.dev@gmail.com" class="contact-card email">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>miethe.dev@gmail.com</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Built with ❤️ by Nick Miethe | Powered by Jekyll & Dracula Theme</p>
+        </div>
+    </footer>
+
+    <script>
+        // Typing effect
+        const phrases = [
+            "Building cloud-native solutions",
+            "Mastering OpenShift & Kubernetes",
+            "Exploring new hobbies",
+            "Writing technical blogs",
+            "Containerizing all the things!",
+            "Father, Husband, Son",
+            "Serial Distracted Hobbyist"
+        ];
+
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedTextElement = document.getElementById('typed-text');
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start typing effect
+        setTimeout(type, 1000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+
+                // Randomize colors
+                const colors = ['var(--purple)', 'var(--pink)', 'var(--cyan)', 'var(--green)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Add scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.about-card, .project-card, .skill-item, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
