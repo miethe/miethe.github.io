@@ -322,10 +322,246 @@ layout: default
             transform: translateX(5px);
         }
 
-        /* Skills Section */
+        /* GitHub Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .repo-card {
+            background: var(--current-line);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .repo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(189, 147, 249, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .repo-card:hover::before {
+            left: 100%;
+        }
+
+        .repo-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-8px) rotateX(2deg);
+            box-shadow: 0 25px 50px rgba(139, 233, 253, 0.25);
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .repo-icon {
+            font-size: 1.5rem;
+        }
+
+        .repo-name {
+            color: var(--cyan);
+            font-size: 1.2rem;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .repo-language {
+            background: var(--bg);
+            color: var(--green);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .repo-description {
+            color: var(--foreground);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            min-height: 3rem;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .repo-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--comment);
+            font-size: 0.85rem;
+        }
+
+        .repo-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .repo-topic {
+            background: rgba(189, 147, 249, 0.2);
+            color: var(--purple);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--pink);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .repo-link:hover {
+            color: var(--cyan);
+            transform: translateX(5px);
+        }
+
+        /* Interactive Terminal */
+        .terminal-section {
+            background: var(--bg);
+            padding: 60px 0;
+        }
+
+        .terminal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1a1a2e;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--current-line);
+        }
+
+        .terminal-header {
+            background: var(--current-line);
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-btn.red { background: #ff5f56; }
+        .terminal-btn.yellow { background: #ffbd2e; }
+        .terminal-btn.green { background: #27ca40; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            color: var(--comment);
+            font-size: 0.9rem;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            min-height: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .terminal-output {
+            margin-bottom: 10px;
+        }
+
+        .terminal-line {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .terminal-line .prompt {
+            color: var(--green);
+        }
+
+        .terminal-line .command {
+            color: var(--foreground);
+        }
+
+        .terminal-line .output {
+            color: var(--comment);
+        }
+
+        .terminal-line .highlight {
+            color: var(--cyan);
+        }
+
+        .terminal-line .accent {
+            color: var(--pink);
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        .terminal-prompt {
+            color: var(--green);
+            margin-right: 8px;
+        }
+
+        #terminal-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--foreground);
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            caret-color: var(--green);
+        }
+
+        .terminal-hint {
+            text-align: center;
+            color: var(--comment);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .terminal-hint code {
+            background: var(--current-line);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--cyan);
+        }
+
+        /* Skills Section with Progress Bars */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -334,7 +570,6 @@ layout: default
             background: var(--current-line);
             padding: 1.5rem;
             border-radius: 15px;
-            text-align: center;
             transition: all 0.3s ease;
             border: 2px solid transparent;
             cursor: pointer;
@@ -342,18 +577,162 @@ layout: default
 
         .skill-item:hover {
             border-color: var(--green);
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(80, 250, 123, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(80, 250, 123, 0.2);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            border-radius: 12px;
+        }
+
+        .skill-info {
+            flex: 1;
         }
 
         .skill-name {
             color: var(--foreground);
             font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .skill-level {
+            color: var(--comment);
+            font-size: 0.85rem;
+        }
+
+        .skill-bar-container {
+            background: var(--bg);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-bar {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--purple), var(--pink));
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--comment);
+        }
+
+        .skill-stat-value {
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        /* 3D Tilt Effect for Featured Projects */
+        .project-card.tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .project-card .tilt-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 50%,
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border-radius: 15px;
+        }
+
+        .project-card:hover .tilt-shine {
+            opacity: 1;
+        }
+
+        /* Floating Action Badges */
+        .floating-badges {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .floating-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--current-line);
+            border: 2px solid var(--purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .floating-badge:hover {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(189, 147, 249, 0.4);
+        }
+
+        .floating-badge .badge-tooltip {
+            position: absolute;
+            right: 60px;
+            background: var(--current-line);
+            color: var(--foreground);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .floating-badge:hover .badge-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .floating-badges {
+                display: none;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .terminal-container {
+                margin: 0 15px;
+            }
         }
 
         /* Contact Section */
@@ -501,6 +880,26 @@ layout: default
     <!-- Particle Background -->
     <div class="particles" id="particles"></div>
 
+    <!-- Floating Action Badges -->
+    <div class="floating-badges">
+        <a href="#portfolio" class="floating-badge">
+            <span>📂</span>
+            <span class="badge-tooltip">GitHub Portfolio</span>
+        </a>
+        <a href="#terminal" class="floating-badge">
+            <span>💻</span>
+            <span class="badge-tooltip">Interactive Terminal</span>
+        </a>
+        <a href="#skills" class="floating-badge">
+            <span>⚡</span>
+            <span class="badge-tooltip">Skills & Stats</span>
+        </a>
+        <a href="#contact" class="floating-badge">
+            <span>📧</span>
+            <span class="badge-tooltip">Contact Me</span>
+        </a>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -510,8 +909,8 @@ layout: default
                 <span id="typed-text"></span><span class="cursor"></span>
             </div>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <a href="#portfolio" class="btn btn-primary">GitHub Portfolio</a>
+                <a href="#terminal" class="btn btn-secondary">Try Terminal</a>
             </div>
         </div>
         <div class="scroll-indicator"></div>
@@ -603,42 +1002,375 @@ layout: default
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- GitHub Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">GitHub Portfolio</h2>
+            <div class="portfolio-grid">
+                <a href="https://github.com/miethe/DnD-Character-Generator" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">🎲</span>
+                        <span class="repo-name">DnD-Character-Generator</span>
+                        <span class="repo-language">Python</span>
+                    </div>
+                    <p class="repo-description">A character creator/generator for D&D 5e with all source races and classes. Names generated via Neural Networks!</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">⭐ 13</span>
+                        <span class="repo-stat">🔀 3</span>
+                        <span class="repo-stat">🐛 10 issues</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">AI/ML</span>
+                        <span class="repo-topic">D&D 5e</span>
+                        <span class="repo-topic">Neural Networks</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/MeatyMusic" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">🎵</span>
+                        <span class="repo-name">MeatyMusic</span>
+                        <span class="repo-language">TypeScript</span>
+                    </div>
+                    <p class="repo-description">E2E music creation app for crafting song styles, lyrics, artist personas, and more. Full-stack creative tool.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">🚀 Active</span>
+                        <span class="repo-stat">📦 26MB</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">Music</span>
+                        <span class="repo-topic">AI</span>
+                        <span class="repo-topic">Full-Stack</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/deal-brain" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">🏠</span>
+                        <span class="repo-name">deal-brain</span>
+                        <span class="repo-language">Python</span>
+                    </div>
+                    <p class="repo-description">Real estate and consulting analysis tool. Smart insights for property investments and business decisions.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">🚀 Active</span>
+                        <span class="repo-stat">📄 MIT</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">Real Estate</span>
+                        <span class="repo-topic">Analytics</span>
+                        <span class="repo-topic">FastAPI</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/pokedex" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">📱</span>
+                        <span class="repo-name">pokedex</span>
+                        <span class="repo-language">Python</span>
+                    </div>
+                    <p class="repo-description">Self-hosted Pokedex web app built with FastAPI and JavaScript. Gotta catch 'em all... locally!</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">🌐 Web App</span>
+                        <span class="repo-stat">⚡ FastAPI</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">Pokemon</span>
+                        <span class="repo-topic">FastAPI</span>
+                        <span class="repo-topic">Self-Hosted</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/skillmeat" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">🤖</span>
+                        <span class="repo-name">skillmeat</span>
+                        <span class="repo-language">Python</span>
+                    </div>
+                    <p class="repo-description">Skills management system for Claude AI. Extending AI capabilities with custom skill definitions.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">🚀 Active</span>
+                        <span class="repo-stat">📄 MIT</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">Claude AI</span>
+                        <span class="repo-topic">Skills</span>
+                        <span class="repo-topic">Automation</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/boxbrain" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">📦</span>
+                        <span class="repo-name">boxbrain</span>
+                        <span class="repo-language">TypeScript</span>
+                    </div>
+                    <p class="repo-description">Consulting Asset Management platform. Smart organization for business resources and inventory.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">🆕 New</span>
+                        <span class="repo-stat">📦 TypeScript</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">Asset Mgmt</span>
+                        <span class="repo-topic">Business</span>
+                        <span class="repo-topic">Full-Stack</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/ai-scratchpad" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">🧪</span>
+                        <span class="repo-name">ai-scratchpad</span>
+                        <span class="repo-language">Python</span>
+                    </div>
+                    <p class="repo-description">Sandbox environment for prototyping AI applications. Quick experiments and proof-of-concepts.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">🔬 Experimental</span>
+                        <span class="repo-stat">🐍 Python</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">AI</span>
+                        <span class="repo-topic">Prototyping</span>
+                        <span class="repo-topic">Sandbox</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/MeatyIdeas" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">💡</span>
+                        <span class="repo-name">MeatyIdeas</span>
+                        <span class="repo-language">TypeScript</span>
+                    </div>
+                    <p class="repo-description">Idea management and brainstorming application. Capture, organize, and develop creative concepts.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">⭐ 1</span>
+                        <span class="repo-stat">📄 Apache 2.0</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">Ideas</span>
+                        <span class="repo-topic">Productivity</span>
+                        <span class="repo-topic">React</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/pokeapi_wrapper_lib" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">🔌</span>
+                        <span class="repo-name">pokeapi_wrapper_lib</span>
+                        <span class="repo-language">Python</span>
+                    </div>
+                    <p class="repo-description">Python wrapper library for the PokeAPI. Clean, typed interface for Pokemon data access.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">⭐ 1</span>
+                        <span class="repo-stat">📚 Library</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">API</span>
+                        <span class="repo-topic">Pokemon</span>
+                        <span class="repo-topic">Library</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+
+                <a href="https://github.com/miethe/template-reactnative-fastapi" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">📋</span>
+                        <span class="repo-name">template-reactnative-fastapi</span>
+                        <span class="repo-language">Python</span>
+                    </div>
+                    <p class="repo-description">Full-stack template for React Native + FastAPI projects. Quick bootstrap for mobile development.</p>
+                    <div class="repo-stats">
+                        <span class="repo-stat">📦 Template</span>
+                        <span class="repo-stat">📱 Mobile</span>
+                    </div>
+                    <div class="repo-topics">
+                        <span class="repo-topic">React Native</span>
+                        <span class="repo-topic">FastAPI</span>
+                        <span class="repo-topic">Template</span>
+                    </div>
+                    <span class="repo-link">View Repository →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Terminal Section -->
+    <section class="terminal-section" id="terminal">
+        <div class="container">
+            <h2 class="section-title">Interactive Terminal</h2>
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-btn red"></div>
+                    <div class="terminal-btn yellow"></div>
+                    <div class="terminal-btn green"></div>
+                    <div class="terminal-title">nick@miethe.dev ~ bash</div>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="terminal-output" id="terminal-output">
+                        <div class="terminal-line">
+                            <span class="output">Welcome to Nick's Interactive Terminal!</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output">Type <span class="highlight">'help'</span> to see available commands.</span>
+                        </div>
+                        <div class="terminal-line"><span class="output">---</span></div>
+                    </div>
+                    <div class="terminal-input-line">
+                        <span class="terminal-prompt">visitor@nick.miethe.dev:~$</span>
+                        <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+            </div>
+            <p class="terminal-hint">Try commands like <code>help</code>, <code>about</code>, <code>skills</code>, <code>projects</code>, or <code>contact</code></p>
+        </div>
+    </section>
+
+    <!-- Skills Section with Progress Bars -->
     <section id="skills">
         <div class="container">
             <h2 class="section-title">Technologies & Skills</h2>
             <div class="skills-grid">
-                <div class="skill-item">
-                    <div class="skill-icon">🚢</div>
-                    <div class="skill-name">OpenShift</div>
+                <div class="skill-item" data-skill="95">
+                    <div class="skill-header">
+                        <div class="skill-icon">🚢</div>
+                        <div class="skill-info">
+                            <div class="skill-name">OpenShift</div>
+                            <div class="skill-level">Expert • SME</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>Experience: <span class="skill-stat-value">5+ years</span></span>
+                        <span>Certifications: <span class="skill-stat-value">Multiple</span></span>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-icon">☸️</div>
-                    <div class="skill-name">Kubernetes</div>
+
+                <div class="skill-item" data-skill="90">
+                    <div class="skill-header">
+                        <div class="skill-icon">☸️</div>
+                        <div class="skill-info">
+                            <div class="skill-name">Kubernetes</div>
+                            <div class="skill-level">Expert</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>Clusters Managed: <span class="skill-stat-value">50+</span></span>
+                        <span>Deployments: <span class="skill-stat-value">1000+</span></span>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-icon">🐳</div>
-                    <div class="skill-name">Docker</div>
+
+                <div class="skill-item" data-skill="88">
+                    <div class="skill-header">
+                        <div class="skill-icon">🐳</div>
+                        <div class="skill-info">
+                            <div class="skill-name">Docker</div>
+                            <div class="skill-level">Advanced</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>Images Built: <span class="skill-stat-value">500+</span></span>
+                        <span>Containers: <span class="skill-stat-value">Daily Use</span></span>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-icon">☁️</div>
-                    <div class="skill-name">Cloud Native</div>
+
+                <div class="skill-item" data-skill="85">
+                    <div class="skill-header">
+                        <div class="skill-icon">🐍</div>
+                        <div class="skill-info">
+                            <div class="skill-name">Python</div>
+                            <div class="skill-level">Advanced</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>Projects: <span class="skill-stat-value">20+</span></span>
+                        <span>Focus: <span class="skill-stat-value">FastAPI, ML</span></span>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-icon">🔧</div>
-                    <div class="skill-name">DevOps</div>
+
+                <div class="skill-item" data-skill="80">
+                    <div class="skill-header">
+                        <div class="skill-icon">📘</div>
+                        <div class="skill-info">
+                            <div class="skill-name">TypeScript</div>
+                            <div class="skill-level">Proficient</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>Projects: <span class="skill-stat-value">10+</span></span>
+                        <span>Focus: <span class="skill-stat-value">React, Node</span></span>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-icon">📝</div>
-                    <div class="skill-name">Hugo</div>
+
+                <div class="skill-item" data-skill="82">
+                    <div class="skill-header">
+                        <div class="skill-icon">🔧</div>
+                        <div class="skill-info">
+                            <div class="skill-name">DevOps</div>
+                            <div class="skill-level">Expert</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>CI/CD Pipelines: <span class="skill-stat-value">100+</span></span>
+                        <span>Tools: <span class="skill-stat-value">GitOps, ArgoCD</span></span>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-icon">🎨</div>
-                    <div class="skill-name">Web Design</div>
+
+                <div class="skill-item" data-skill="75">
+                    <div class="skill-header">
+                        <div class="skill-icon">📝</div>
+                        <div class="skill-info">
+                            <div class="skill-name">Hugo / Static Sites</div>
+                            <div class="skill-level">Proficient</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>Sites Built: <span class="skill-stat-value">5+</span></span>
+                        <span>Blogs: <span class="skill-stat-value">3 Active</span></span>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-icon">🛠️</div>
-                    <div class="skill-name">DIY Projects</div>
+
+                <div class="skill-item" data-skill="70">
+                    <div class="skill-header">
+                        <div class="skill-icon">🤖</div>
+                        <div class="skill-info">
+                            <div class="skill-name">AI / ML</div>
+                            <div class="skill-level">Growing</div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar"></div>
+                    </div>
+                    <div class="skill-stats">
+                        <span>AI Projects: <span class="skill-stat-value">5+</span></span>
+                        <span>Focus: <span class="skill-stat-value">LLMs, Claude</span></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -757,6 +1489,315 @@ layout: default
 
         createParticles();
 
+        // Interactive Terminal
+        const terminalCommands = {
+            help: {
+                output: [
+                    '<span class="highlight">Available Commands:</span>',
+                    '',
+                    '  <span class="accent">about</span>      - Learn about Nick',
+                    '  <span class="accent">skills</span>     - View technical skills',
+                    '  <span class="accent">projects</span>   - List GitHub projects',
+                    '  <span class="accent">blogs</span>      - See blog sites',
+                    '  <span class="accent">contact</span>    - Get contact info',
+                    '  <span class="accent">social</span>     - Social media links',
+                    '  <span class="accent">joke</span>       - Tell me a dev joke',
+                    '  <span class="accent">cowsay</span>     - ASCII art fun',
+                    '  <span class="accent">matrix</span>     - Enter the matrix',
+                    '  <span class="accent">clear</span>      - Clear terminal',
+                    '  <span class="accent">exit</span>       - Close terminal',
+                    ''
+                ]
+            },
+            about: {
+                output: [
+                    '<span class="highlight">About Nick Miethe</span>',
+                    '',
+                    '  OpenShift Subject Matter Expert with 5+ years experience',
+                    '  in container orchestration and cloud-native architectures.',
+                    '',
+                    '  <span class="accent">Roles:</span> SME, Blogger, DIY Enthusiast, Father',
+                    '  <span class="accent">Based:</span> Texas, USA',
+                    '  <span class="accent">Focus:</span> Kubernetes, OpenShift, DevOps, AI/ML',
+                    ''
+                ]
+            },
+            skills: {
+                output: [
+                    '<span class="highlight">Technical Skills</span>',
+                    '',
+                    '  <span class="accent">Expert:</span>     OpenShift, Kubernetes, Docker',
+                    '  <span class="accent">Advanced:</span>   Python, DevOps, CI/CD',
+                    '  <span class="accent">Proficient:</span> TypeScript, React, Hugo',
+                    '  <span class="accent">Growing:</span>    AI/ML, LLMs, Claude',
+                    ''
+                ]
+            },
+            projects: {
+                output: [
+                    '<span class="highlight">Top GitHub Projects</span>',
+                    '',
+                    '  <span class="accent">DnD-Character-Generator</span> - D&D 5e character creator with AI',
+                    '  <span class="accent">MeatyMusic</span>             - E2E music creation app',
+                    '  <span class="accent">deal-brain</span>             - Real estate analysis tool',
+                    '  <span class="accent">pokedex</span>                - Self-hosted Pokedex app',
+                    '  <span class="accent">skillmeat</span>              - Claude AI skills system',
+                    '',
+                    '  Type <span class="highlight">open github</span> to visit profile',
+                    ''
+                ]
+            },
+            blogs: {
+                output: [
+                    '<span class="highlight">Blog Sites</span>',
+                    '',
+                    '  <span class="accent">MeatyBytes.io</span>          - Tech & career insights',
+                    '  <span class="accent">OpenShift.blog</span>         - OpenShift knowledge base',
+                    '  <span class="accent">DistractedHobbyists.com</span> - Hobby projects wiki',
+                    ''
+                ]
+            },
+            contact: {
+                output: [
+                    '<span class="highlight">Contact Information</span>',
+                    '',
+                    '  <span class="accent">Email:</span>    miethe.dev@gmail.com',
+                    '  <span class="accent">GitHub:</span>   github.com/miethe',
+                    '  <span class="accent">LinkedIn:</span> linkedin.com/in/miethe',
+                    ''
+                ]
+            },
+            social: {
+                output: [
+                    '<span class="highlight">Social Links</span>',
+                    '',
+                    '  <span class="accent">GitHub:</span>   https://github.com/miethe',
+                    '  <span class="accent">LinkedIn:</span> https://linkedin.com/in/miethe',
+                    '  <span class="accent">Blog:</span>     https://meatybytes.io',
+                    ''
+                ]
+            },
+            joke: {
+                output: [
+                    '<span class="highlight">Dev Joke:</span>',
+                    '',
+                    getRandomJoke(),
+                    ''
+                ]
+            },
+            cowsay: {
+                output: [
+                    '<span class="accent">        \\   ^__^</span>',
+                    '<span class="accent">         \\  (oo)\\_______</span>',
+                    '<span class="accent">            (__)\\       )\\/\\</span>',
+                    '<span class="accent">                ||----w |</span>',
+                    '<span class="accent">                ||     ||</span>',
+                    '',
+                    '<span class="highlight">"Moo! Check out the GitHub Portfolio!"</span>',
+                    ''
+                ]
+            },
+            matrix: {
+                output: [
+                    '<span class="accent">Wake up, Neo...</span>',
+                    '',
+                    '<span class="highlight">The Matrix has you...</span>',
+                    '',
+                    '<span class="accent">Follow the white rabbit to #portfolio</span>',
+                    ''
+                ]
+            },
+            whoami: {
+                output: [
+                    'visitor@nick.miethe.dev',
+                    ''
+                ]
+            },
+            pwd: {
+                output: [
+                    '/home/visitor/nick.miethe.dev',
+                    ''
+                ]
+            },
+            ls: {
+                output: [
+                    '<span class="accent">about.txt</span>  <span class="accent">projects/</span>  <span class="accent">skills.json</span>  <span class="accent">contact.md</span>',
+                    ''
+                ]
+            },
+            date: {
+                output: [
+                    new Date().toString(),
+                    ''
+                ]
+            },
+            clear: {
+                action: 'clear'
+            },
+            exit: {
+                output: [
+                    '<span class="highlight">Thanks for visiting! Scroll down to explore more.</span>',
+                    ''
+                ]
+            },
+            'open github': {
+                action: 'open',
+                url: 'https://github.com/miethe'
+            },
+            sudo: {
+                output: [
+                    '<span class="accent">Nice try! But you need root access for that.</span>',
+                    '<span class="highlight">Hint: Try the "help" command instead!</span>',
+                    ''
+                ]
+            },
+            vim: {
+                output: [
+                    '<span class="accent">vim: command not found</span>',
+                    '<span class="highlight">This terminal only supports basic commands. Try "help"!</span>',
+                    ''
+                ]
+            },
+            nano: {
+                output: [
+                    '<span class="accent">nano: command not found</span>',
+                    '<span class="highlight">This is a read-only terminal. Try "help"!</span>',
+                    ''
+                ]
+            }
+        };
+
+        function getRandomJoke() {
+            const jokes = [
+                '"Why do programmers prefer dark mode? Because light attracts bugs!"',
+                '"A SQL query walks into a bar, walks up to two tables and asks... Can I join you?"',
+                '"Why do Java developers wear glasses? Because they don\'t C#!"',
+                '"There are only 10 types of people: those who understand binary and those who don\'t."',
+                '"A programmer\'s wife tells him: Go to the store and get a loaf of bread. If they have eggs, get a dozen. He comes back with 12 loaves of bread."',
+                '"Why did the developer go broke? Because he used up all his cache!"',
+                '"What\'s a programmer\'s favorite hangout place? Foo Bar!"',
+                '"How many programmers does it take to change a light bulb? None, that\'s a hardware problem!"'
+            ];
+            return '<span class="accent">' + jokes[Math.floor(Math.random() * jokes.length)] + '</span>';
+        }
+
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalOutput = document.getElementById('terminal-output');
+        const terminalBody = document.getElementById('terminal-body');
+
+        terminalInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value.trim().toLowerCase();
+                if (command) {
+                    processCommand(command);
+                }
+                this.value = '';
+            }
+        });
+
+        function processCommand(cmd) {
+            // Add the command to output
+            const cmdLine = document.createElement('div');
+            cmdLine.className = 'terminal-line';
+            cmdLine.innerHTML = '<span class="prompt">visitor@nick.miethe.dev:~$</span> <span class="command">' + cmd + '</span>';
+            terminalOutput.appendChild(cmdLine);
+
+            // Process the command
+            const cmdData = terminalCommands[cmd];
+            if (cmdData) {
+                if (cmdData.action === 'clear') {
+                    terminalOutput.innerHTML = '';
+                } else if (cmdData.action === 'open') {
+                    window.open(cmdData.url, '_blank');
+                    addOutput(['<span class="highlight">Opening ' + cmdData.url + '...</span>', '']);
+                } else if (cmdData.output) {
+                    // Re-evaluate joke for fresh content
+                    if (cmd === 'joke') {
+                        addOutput([
+                            '<span class="highlight">Dev Joke:</span>',
+                            '',
+                            getRandomJoke(),
+                            ''
+                        ]);
+                    } else {
+                        addOutput(cmdData.output);
+                    }
+                }
+            } else {
+                addOutput([
+                    '<span class="accent">Command not found: ' + cmd + '</span>',
+                    'Type <span class="highlight">help</span> for available commands.',
+                    ''
+                ]);
+            }
+
+            // Scroll to bottom
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+
+        function addOutput(lines) {
+            lines.forEach(line => {
+                const outputLine = document.createElement('div');
+                outputLine.className = 'terminal-line';
+                outputLine.innerHTML = '<span class="output">' + line + '</span>';
+                terminalOutput.appendChild(outputLine);
+            });
+        }
+
+        // Focus terminal when clicking on it
+        document.querySelector('.terminal-body').addEventListener('click', function() {
+            terminalInput.focus();
+        });
+
+        // 3D Tilt Effect for Project Cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            // Add tilt shine element
+            const shine = document.createElement('div');
+            shine.className = 'tilt-shine';
+            card.appendChild(shine);
+            card.classList.add('tilt-card');
+
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+
+                // Move shine based on mouse position
+                shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.15) 0%, transparent 50%)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Animated Skill Bars
+        const skillObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillItem = entry.target;
+                    const skillLevel = skillItem.getAttribute('data-skill');
+                    const skillBar = skillItem.querySelector('.skill-bar');
+
+                    setTimeout(() => {
+                        skillBar.style.width = skillLevel + '%';
+                    }, 200);
+
+                    skillObserver.unobserve(skillItem);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.skill-item[data-skill]').forEach(el => {
+            skillObserver.observe(el);
+        });
+
         // Add scroll reveal animations
         const observerOptions = {
             threshold: 0.1,
@@ -773,12 +1814,46 @@ layout: default
         }, observerOptions);
 
         // Observe all cards and sections
-        document.querySelectorAll('.about-card, .project-card, .skill-item, .contact-card').forEach(el => {
+        document.querySelectorAll('.about-card, .project-card, .skill-item, .contact-card, .repo-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+
+        // Konami Code Easter Egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    activateEasterEgg();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        function activateEasterEgg() {
+            document.body.style.animation = 'rainbow 2s ease';
+            setTimeout(() => {
+                document.body.style.animation = '';
+                alert('You found the Konami Code easter egg! You are a true gamer. Check out the DnD-Character-Generator project!');
+            }, 2000);
+        }
+
+        // Add rainbow animation for easter egg
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
